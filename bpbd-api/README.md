@@ -1,0 +1,37 @@
+# BPBD API
+
+API untuk aplikasi manajemen BPBD.
+
+## Endpoint
+
+### Members
+
+*   `GET /api/members` - Mendapatkan semua anggota
+*   `POST /api/members` - Membuat anggota baru
+*   `GET /api/members/{member}` - Mendapatkan anggota tertentu
+*   `PUT/PATCH /api/members/{member}` - Memperbarui anggota tertentu
+*   `DELETE /api/members/{member}` - Menghapus anggota tertentu
+
+### Tasks
+
+*   `GET /api/tasks` - Mendapatkan semua tugas
+*   `POST /api/tasks` - Membuat tugas baru
+*   `GET /api/tasks/{task}` - Mendapatkan tugas tertentu
+*   `PUT/PATCH /api/tasks/{task}` - Memperbarui tugas tertentu
+*   `DELETE /api/tasks/{task}` - Menghapus tugas tertentu
+
+### Memos
+
+*   `GET /api/memos` - Mendapatkan semua memo
+*   `POST /api/memos` - Membuat memo baru
+*   `GET /api/memos/{memo}` - Mendapatkan memo tertentu
+*   `PUT/PATCH /api/memos/{memo}` - Memperbarui memo tertentu
+*   `DELETE /api/memos/{memo}` - Menghapus memo tertentu
+
+### News
+
+*   `GET /api/news` - Mendapatkan semua berita
+*   `POST /api/news` - Membuat berita baru
+*   `GET /api/news/{news}` - Mendapatkan berita tertentu
+*   `PUT/PATCH /api/news/{news}` - Memperbarui berita tertentu
+*   `DELETE /api/news/{news}` - Menghapus berita tertentu

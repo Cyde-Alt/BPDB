@@ -12,15 +12,25 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Arsitektur
 
-Aplikasi ini dibangun menggunakan arsitektur MVVM (Model-View-ViewModel) dengan komponen-komponen berikut:
+Aplikasi ini terdiri dari dua bagian:
 
-*   **View**: Activities dan Fragments yang bertanggung jawab untuk menampilkan UI.
-*   **ViewModel**: Menyimpan dan mengelola data terkait UI.
-*   **Model**: Merepresentasikan data dan logika bisnis.
+1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Bertanggung jawab untuk menampilkan antarmuka pengguna dan berinteraksi dengan API.
+2.  **API**: Dibangun dengan PHP dan framework Laravel. Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
 
 ## Cara Menjalankan
 
+### Aplikasi Android
+
 1.  Buka proyek di Android Studio.
 2.  Jalankan aplikasi di emulator atau perangkat Android.
-3.  Login dengan akun yang valid (saat ini belum ada otentikasi).
-4.  Gunakan navigasi bawah untuk mengakses fitur-fitur yang tersedia.
+3.  Pastikan API berjalan dan dapat diakses oleh aplikasi.
+4.  Login dengan akun yang valid.
+5.  Gunakan navigasi bawah untuk mengakses fitur-fitur yang tersedia.
+
+### API
+
+1.  Buka proyek di direktori `bpbd-api`.
+2.  Jalankan `composer install` untuk menginstal dependensi.
+3.  Salin `.env.example` ke `.env` dan konfigurasikan database.
+4.  Jalankan `php artisan migrate` untuk membuat tabel di database.
+5.  Jalankan `php artisan serve` untuk menjalankan server API.

@@ -1,5 +1,6 @@
 package com.example.bpbdapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,14 @@ class LoginActivity : AppCompatActivity() {
 
         binding.login.setOnClickListener {
             // TODO: Add authentication logic here
+            // For now, let's assume the user is a "pimpinan"
+            val role = "pimpinan"
+            val sharedPref = getSharedPreferences("BPBDApp", Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                putString("user_role", role)
+                apply()
+            }
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

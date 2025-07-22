@@ -23,8 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('members', MemberController::class);
-Route::apiResource('tasks', TaskController::class);
-Route::apiResource('memos', MemoController::class);
-Route::apiResource('news', NewsController::class);
-Route::apiResource('reports', ReportController::class);
+Route::middleware(['auth:sanctum', 'role:super admin'])->group(function () {
+    Route::apiResource('members', MemberController::class);
+});
+
+Route::middleware(['auth:sanctum', 'role:super admin,pimpinan,kepala bidang,sekretaris,bendahara'])->group(function () {
+    Route::get('/members', [MemberController::class, 'index']);
+    Route::get('/members/{member}', [MemberController::class, 'show']);
+});
+
+Route::apiResource('tasks', TaskController::class)->middleware(['auth:sanctum', 'role:super admin,kepala bidang']);
+Route::apiResource('memos', MemoController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+Route::apiResource('news', NewsController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+Route::apiResource('reports', ReportController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);

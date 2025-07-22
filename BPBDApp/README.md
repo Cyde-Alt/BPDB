@@ -4,6 +4,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
+*   **Role dan Hak Akses**: Sistem role dan hak akses untuk setiap pengguna (operator, kepala bidang, sekretaris, bendahara, pimpinan, super admin).
 *   **Pelaporan dari Masyarakat**: Memungkinkan masyarakat umum untuk melaporkan kejadian bencana.
 *   **Informasi Cuaca**: Menampilkan informasi cuaca terkini.
 *   **Berita**: Menampilkan berita terkini terkait kebencanaan.

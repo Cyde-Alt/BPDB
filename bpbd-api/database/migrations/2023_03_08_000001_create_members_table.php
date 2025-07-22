@@ -16,7 +16,12 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->enum('role', ['operator', 'kepala bidang', 'sekretaris', 'bendahara', 'pimpinan', 'super admin'])->default('operator');
             $table->enum('status', ['siaga', 'bertugas', 'non-aktif']);
+            $table->rememberToken();
             $table->timestamps();
         });
     }

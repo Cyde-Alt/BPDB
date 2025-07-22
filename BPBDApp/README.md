@@ -4,13 +4,13 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
+*   **Manajemen Anggota**: Super admin dan sekretaris dapat menambah, mengubah, dan menghapus anggota. Pimpinan dapat melihat daftar anggota dan jabatan.
 *   **Manajemen Perintah Tugas**: Alur kerja lengkap untuk perintah tugas, termasuk pengajuan, persetujuan, pelaporan, dan pengarsipan.
 *   **Memo Penugasan Darurat**: Alur kerja lengkap untuk memo penugasan darurat, termasuk pengiriman, konfirmasi, pelaporan, dan pelacakan status.
 *   **Role dan Hak Akses**: Sistem role dan hak akses untuk setiap pengguna (operator, kepala bidang, sekretaris, bendahara, pimpinan, super admin).
 *   **Pelaporan dari Masyarakat**: Memungkinkan masyarakat umum untuk melaporkan kejadian bencana.
 *   **Informasi Cuaca**: Menampilkan informasi cuaca terkini.
 *   **Berita**: Menampilkan berita terkini terkait kebencanaan.
-*   **Manajemen Anggota**: Menambah, mengubah, dan menghapus data anggota. Menampilkan daftar anggota beserta status (siaga, bertugas, non-aktif).
 
 ## Arsitektur
 

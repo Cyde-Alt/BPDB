@@ -23,6 +23,7 @@ class MemberAdapter(private val members: List<Member>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(member: Member) {
             binding.memberName.text = member.name
+            binding.memberRole.text = member.role
             binding.memberStatus.text = member.status
         }
     }

@@ -35,3 +35,7 @@ API untuk aplikasi manajemen BPBD.
 *   `GET /api/news/{news}` - Mendapatkan berita tertentu
 *   `PUT/PATCH /api/news/{news}` - Memperbarui berita tertentu
 *   `DELETE /api/news/{news}` - Menghapus berita tertentu
+
+## Catatan
+
+Jika Anda diminta memasukkan token saat menjalankan `composer install`, Anda perlu membuat personal access token di GitHub dan mengkonfigurasinya dengan Composer. Lihat [dokumentasi GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) untuk detailnya.

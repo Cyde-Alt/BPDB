@@ -25,8 +25,9 @@ class MemoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val memos = listOf(
-            Memo("1", "Peringatan Dini", "Waspada potensi hujan lebat di wilayah Jabodetabek.", System.currentTimeMillis()),
-            Memo("2", "Kebutuhan Logistik", "Segera kirimkan bantuan logistik ke posko pengungsian.", System.currentTimeMillis())
+            Memo("1", "Peringatan Dini", "Waspada potensi hujan lebat di wilayah Jabodetabek.", "terkirim", System.currentTimeMillis()),
+            Memo("2", "Kebutuhan Logistik", "Segera kirimkan bantuan logistik ke posko pengungsian.", "dibaca", System.currentTimeMillis()),
+            Memo("3", "Laporan Bencana", "Laporan mengenai tanah longsor di Desa Cijulang.", "dilaporkan", System.currentTimeMillis())
         )
 
         binding.recyclerView.apply {

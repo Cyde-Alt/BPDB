@@ -45,4 +45,25 @@ class MemoController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function confirm(Request $request, Memo $memo)
+    {
+        $memo->recipients()->updateExistingPivot($request->user()->id, ['read_at' => now()]);
+
+        return response()->json(['message' => 'Memo confirmed']);
+    }
+
+    public function report(Request $request, Memo $memo)
+    {
+        $request->validate([
+            'report' => 'required',
+        ]);
+
+        // TODO: Handle file upload
+        $memo->update(['status' => 'dilaporkan']);
+
+        // TODO: Save report details
+
+        return response()->json(['message' => 'Report submitted']);
+    }
 }

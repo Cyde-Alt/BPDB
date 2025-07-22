@@ -34,5 +34,7 @@ Route::middleware(['auth:sanctum', 'role:super admin,pimpinan,kepala bidang,sekr
 
 Route::apiResource('tasks', TaskController::class)->middleware(['auth:sanctum', 'role:super admin,kepala bidang']);
 Route::apiResource('memos', MemoController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+Route::post('/memos/{memo}/confirm', [MemoController::class, 'confirm'])->middleware('auth:sanctum');
+Route::post('/memos/{memo}/report', [MemoController::class, 'report'])->middleware('auth:sanctum');
 Route::apiResource('news', NewsController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 Route::apiResource('reports', ReportController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);

@@ -12,5 +12,12 @@ class Memo extends Model
     protected $fillable = [
         'title',
         'message',
+        'recipient_type',
+        'status',
     ];
+
+    public function recipients()
+    {
+        return $this->belongsToMany(Member::class, 'memo_recipients');
+    }
 }

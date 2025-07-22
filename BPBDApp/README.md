@@ -4,13 +4,13 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
+*   **Memo Penugasan Darurat**: Alur kerja lengkap untuk memo penugasan darurat, termasuk pengiriman, konfirmasi, pelaporan, dan pelacakan status.
 *   **Role dan Hak Akses**: Sistem role dan hak akses untuk setiap pengguna (operator, kepala bidang, sekretaris, bendahara, pimpinan, super admin).
 *   **Pelaporan dari Masyarakat**: Memungkinkan masyarakat umum untuk melaporkan kejadian bencana.
 *   **Informasi Cuaca**: Menampilkan informasi cuaca terkini.
 *   **Berita**: Menampilkan berita terkini terkait kebencanaan.
 *   **Manajemen Anggota**: Menambah, mengubah, dan menghapus data anggota. Menampilkan daftar anggota beserta status (siaga, bertugas, non-aktif).
 *   **Manajemen Perintah Tugas**: Membuat perintah tugas baru dengan detail seperti lokasi, jenis bencana, dan anggota yang ditugaskan. Mengirimkan notifikasi kepada anggota yang ditugaskan. Melacak status pengerjaan tugas (diterima, dikerjakan, selesai).
-*   **Memo Penugasan Darurat**: Fitur untuk mengirimkan memo singkat dan darurat kepada seluruh atau sebagian anggota. Notifikasi darurat yang menonjol di perangkat anggota.
 
 ## Arsitektur
 

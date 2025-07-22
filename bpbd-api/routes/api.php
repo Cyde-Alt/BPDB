@@ -32,7 +32,11 @@ Route::middleware(['auth:sanctum', 'role:super admin,pimpinan,kepala bidang,sekr
     Route::get('/members/{member}', [MemberController::class, 'show']);
 });
 
-Route::apiResource('tasks', TaskController::class)->middleware(['auth:sanctum', 'role:super admin,kepala bidang']);
+Route::apiResource('tasks', TaskController::class)->middleware(['auth:sanctum', 'role:super admin,kepala bidang,sekretaris']);
+Route::post('/tasks/{task}/approve', [TaskController::class, 'approve'])->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+Route::post('/tasks/{task}/reject', [TaskController::class, 'reject'])->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+Route::post('/tasks/{task}/report', [TaskController::class, 'report'])->middleware('auth:sanctum');
+Route::post('/tasks/{task}/archive', [TaskController::class, 'archive'])->middleware(['auth:sanctum', 'role:super admin,sekretaris']);
 Route::apiResource('memos', MemoController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 Route::post('/memos/{memo}/confirm', [MemoController::class, 'confirm'])->middleware('auth:sanctum');
 Route::post('/memos/{memo}/report', [MemoController::class, 'report'])->middleware('auth:sanctum');

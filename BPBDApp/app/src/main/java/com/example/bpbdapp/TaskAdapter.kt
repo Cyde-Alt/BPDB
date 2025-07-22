@@ -1,5 +1,6 @@
 package com.example.bpbdapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,12 @@ class TaskAdapter(private val tasks: List<Task>) :
             binding.taskTitle.text = task.title
             binding.taskLocation.text = task.location
             binding.taskStatus.text = task.status
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, TaskDetailActivity::class.java)
+                // TODO: Pass task ID to the activity
+                itemView.context.startActivity(intent)
+            }
         }
     }
 }

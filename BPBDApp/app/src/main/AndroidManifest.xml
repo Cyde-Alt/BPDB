@@ -22,6 +22,9 @@
         <activity android:name=".ReportActivity" />
         <activity android:name=".MemoDetailActivity" />
         <activity android:name=".MemoReportActivity" />
+        <activity android:name=".CreateTaskActivity" />
+        <activity android:name=".TaskDetailActivity" />
+        <activity android:name=".TaskReportActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

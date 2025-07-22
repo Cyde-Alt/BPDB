@@ -14,6 +14,10 @@ class Task extends Model
         'location',
         'disaster_type',
         'status',
+        'created_by',
+        'approved_by',
+        'report',
+        'attachment_url',
     ];
 
     public function members()

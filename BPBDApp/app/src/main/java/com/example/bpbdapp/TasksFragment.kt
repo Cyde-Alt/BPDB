@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import android.content.Context
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bpbdapp.databinding.FragmentTasksBinding
 
@@ -32,6 +34,19 @@ class TasksFragment : Fragment() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = TaskAdapter(tasks)
+        }
+
+        val sharedPref = activity?.getSharedPreferences("BPBDApp", Context.MODE_PRIVATE)
+        val userRole = sharedPref?.getString("user_role", "operator")
+
+        if (userRole == "sekretaris") {
+            binding.fabCreateTask.visibility = View.VISIBLE
+            binding.fabCreateTask.setOnClickListener {
+                val intent = Intent(activity, CreateTaskActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            binding.fabCreateTask.visibility = View.GONE
         }
     }
 

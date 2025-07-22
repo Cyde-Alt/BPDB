@@ -59,4 +59,43 @@ class TaskController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function approve(Request $request, Task $task)
+    {
+        $task->update([
+            'status' => 'disetujui',
+            'approved_by' => $request->user()->id,
+        ]);
+
+        return response()->json(['message' => 'Task approved']);
+    }
+
+    public function reject(Request $request, Task $task)
+    {
+        $task->update(['status' => 'ditolak']);
+
+        return response()->json(['message' => 'Task rejected']);
+    }
+
+    public function report(Request $request, Task $task)
+    {
+        $request->validate([
+            'report' => 'required',
+        ]);
+
+        // TODO: Handle file upload
+        $task->update([
+            'status' => 'dilaporkan',
+            'report' => $request->report,
+        ]);
+
+        return response()->json(['message' => 'Report submitted']);
+    }
+
+    public function archive(Request $request, Task $task)
+    {
+        $task->update(['status' => 'diarsipkan']);
+
+        return response()->json(['message' => 'Task archived']);
+    }
 }

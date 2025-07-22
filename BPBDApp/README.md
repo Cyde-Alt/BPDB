@@ -4,6 +4,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
+*   **Pelaporan dari Masyarakat**: Memungkinkan masyarakat umum untuk melaporkan kejadian bencana.
 *   **Informasi Cuaca**: Menampilkan informasi cuaca terkini.
 *   **Berita**: Menampilkan berita terkini terkait kebencanaan.
 *   **Manajemen Anggota**: Menambah, mengubah, dan menghapus data anggota. Menampilkan daftar anggota beserta status (siaga, bertugas, non-aktif).
@@ -19,18 +20,29 @@ Aplikasi ini terdiri dari dua bagian:
 
 ## Cara Menjalankan
 
-### Aplikasi Android
+### Prasyarat
 
-1.  Buka proyek di Android Studio.
-2.  Jalankan aplikasi di emulator atau perangkat Android.
-3.  Pastikan API berjalan dan dapat diakses oleh aplikasi.
-4.  Login dengan akun yang valid.
-5.  Gunakan navigasi bawah untuk mengakses fitur-fitur yang tersedia.
+*   Android Studio
+*   XAMPP atau WAMP (atau lingkungan server lokal lainnya dengan PHP, MySQL, dan Composer)
+*   Git
 
 ### API
 
-1.  Buka proyek di direktori `bpbd-api`.
-2.  Jalankan `composer install` untuk menginstal dependensi.
-3.  Salin `.env.example` ke `.env` dan konfigurasikan database.
-4.  Jalankan `php artisan migrate` untuk membuat tabel di database.
-5.  Jalankan `php artisan serve` untuk menjalankan server API.
+1.  **Unduh Kode**: Kloning repositori ini ke komputer Anda.
+2.  **Buka Direktori API**: Buka terminal dan arahkan ke direktori `bpbd-api`.
+3.  **Instal Dependensi**: Jalankan `composer install`. Jika Anda diminta memasukkan token, lihat [dokumentasi GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) untuk membuat personal access token.
+4.  **Konfigurasi Database**: Salin `.env.example` ke `.env` dan konfigurasikan koneksi database Anda.
+5.  **Buat Tabel**: Jalankan `php artisan migrate` untuk membuat tabel di database Anda.
+6.  **Jalankan Server**: Jalankan `php artisan serve` untuk memulai server API.
+
+### Aplikasi Android
+
+1.  **Buka Proyek**: Buka direktori `BPBDApp` di Android Studio.
+2.  **Konfigurasi Alamat IP API**: Di dalam kode aplikasi Android, cari tempat di mana alamat IP API didefinisikan (biasanya dalam file konstanta atau konfigurasi) dan ubah menjadi alamat IP lokal Anda (misalnya, `http://192.168.1.10:8000/api/`).
+3.  **Jalankan Aplikasi**: Jalankan aplikasi di emulator Android atau perangkat fisik.
+
+## Pembaruan Aplikasi
+
+*   **Google Play Store**: Cara yang direkomendasikan untuk mendistribusikan dan memperbarui aplikasi.
+*   **Pembaruan Dalam Aplikasi**: Implementasikan fitur pembaruan dalam aplikasi untuk memberi tahu pengguna tentang versi baru.
+*   **Manual**: Untuk pengembangan, instal versi baru secara manual melalui Android Studio.

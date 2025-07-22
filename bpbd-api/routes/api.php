@@ -3,6 +3,7 @@
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,4 @@ Route::apiResource('members', MemberController::class);
 Route::apiResource('tasks', TaskController::class);
 Route::apiResource('memos', MemoController::class);
 Route::apiResource('news', NewsController::class);
+Route::apiResource('reports', ReportController::class);

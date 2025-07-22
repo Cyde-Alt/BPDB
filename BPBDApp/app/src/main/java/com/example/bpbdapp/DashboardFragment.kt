@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import android.content.Intent
 import com.example.bpbdapp.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -46,6 +47,11 @@ class DashboardFragment : Fragment() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = NewsAdapter(newsList)
+        }
+
+        binding.fabReport.setOnClickListener {
+            val intent = Intent(activity, ReportActivity::class.java)
+            startActivity(intent)
         }
     }
 

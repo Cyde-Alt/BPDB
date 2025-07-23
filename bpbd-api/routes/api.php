@@ -49,7 +49,7 @@ Route::post('/memos/{memo}/reject', [MemoController::class, 'reject'])->middlewa
 Route::post('/memos/{memo}/forward', [MemoController::class, 'forward'])->middleware(['auth:sanctum', 'role:kepala bidang']);
 Route::post('/memos/{memo}/archive', [MemoController::class, 'archive'])->middleware(['auth:sanctum', 'role:sekretaris']);
 Route::apiResource('divisions', DivisionController::class)->middleware(['auth:sanctum', 'role:super admin,operator']);
-Route::apiResource('news', NewsController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+Route::apiResource('news', NewsController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan,operator']);
 Route::apiResource('reports', ReportController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 
 Route::prefix('finance')->middleware(['auth:sanctum', 'role:super admin,bendahara,pimpinan'])->group(function () {

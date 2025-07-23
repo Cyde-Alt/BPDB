@@ -75,6 +75,10 @@ class DashboardFragment : Fragment() {
             binding.fabThemeSettings.visibility = View.GONE
         }
 
+        if (userRole == "super admin" || userRole == "pimpinan" || userRole == "operator") {
+            // TODO: Add a FAB for creating news
+        }
+
         if (userRole == "pimpinan") {
             // TODO: Add a button or menu item to open PlacementApprovalActivity
         }

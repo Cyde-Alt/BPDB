@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\FinanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,3 +51,7 @@ Route::post('/memos/{memo}/archive', [MemoController::class, 'archive'])->middle
 Route::apiResource('divisions', DivisionController::class)->middleware(['auth:sanctum', 'role:super admin,operator']);
 Route::apiResource('news', NewsController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 Route::apiResource('reports', ReportController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
+
+Route::prefix('finance')->middleware(['auth:sanctum', 'role:super admin,bendahara,pimpinan'])->group(function () {
+    // TODO: Add finance routes
+});

@@ -4,6 +4,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
+*   **Manajemen Keuangan**: Bendahara dapat mengelola anggaran, mencatat transaksi, dan mengajukan permintaan pengeluaran. Pimpinan dapat menyetujui permintaan dan melihat laporan keuangan.
 *   **Live Chat**: Komunikasi *real-time* antar pengguna, termasuk *chat* grup, percakapan pribadi, dan pengiriman berkas.
 *   **Log Aktivitas**: Semua aktivitas penting dicatat dan dapat dilihat oleh Super Admin.
 *   **Notifikasi Komprehensif**: Notifikasi *push* untuk berbagai peristiwa penting, seperti tugas baru, persetujuan, dan laporan.
@@ -22,8 +23,8 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 *   **Super Admin**: Memiliki akses penuh ke semua fitur dan data, termasuk kustomisasi tema, log aktivitas, dan manajemen grup *chat*.
 *   **Pimpinan**:
-    *   Melihat semua data.
-    *   Menyetujui atau menolak perintah tugas, penempatan anggota, dan memo.
+    *   Melihat semua data, termasuk laporan keuangan.
+    *   Menyetujui atau menolak perintah tugas, penempatan anggota, memo, dan permintaan pengeluaran.
     *   Membuat dan mengirim memo.
 *   **Kepala Bidang**:
     *   Melihat anggota dan tugas di bidangnya.
@@ -36,6 +37,8 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
     *   Melihat memo.
     *   Mengarsipkan tugas dan memo.
 *   **Bendahara**:
+    *   Mengelola keuangan (anggaran, transaksi).
+    *   Mengajukan permintaan pengeluaran.
     *   Melihat anggota.
 *   **Operator**:
     *   Menempatkan anggota baru ke dalam bidang.

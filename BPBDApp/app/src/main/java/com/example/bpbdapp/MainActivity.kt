@@ -33,12 +33,15 @@ class MainActivity : AppCompatActivity() {
         when (userRole) {
             "pimpinan" -> {
                 menu.findItem(R.id.nav_tasks).isVisible = false
+                menu.findItem(R.id.nav_finance).isVisible = false
             }
             "kepala bidang" -> {
                 menu.findItem(R.id.nav_memo).isVisible = false
+                menu.findItem(R.id.nav_finance).isVisible = false
             }
             "sekretaris" -> {
                 menu.findItem(R.id.nav_tasks).isVisible = false
+                menu.findItem(R.id.nav_finance).isVisible = false
             }
             "bendahara" -> {
                 menu.findItem(R.id.nav_tasks).isVisible = false
@@ -47,6 +50,10 @@ class MainActivity : AppCompatActivity() {
             "operator" -> {
                 menu.findItem(R.id.nav_memo).isVisible = false
                 menu.findItem(R.id.nav_members).isVisible = false
+                menu.findItem(R.id.nav_finance).isVisible = false
+            }
+            else -> {
+                menu.findItem(R.id.nav_finance).isVisible = false
             }
         }
     }
@@ -65,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener false
             }
+            R.id.nav_finance -> selectedFragment = FinanceFragment()
         }
 
         if (selectedFragment != null) {

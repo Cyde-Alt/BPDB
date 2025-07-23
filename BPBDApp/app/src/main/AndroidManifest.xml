@@ -35,6 +35,8 @@
         <activity android:name=".LogActivity" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".ChatActivity" />
+        <activity android:name=".ExpenseApprovalActivity" />
+        <activity android:name=".FinancialReportActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

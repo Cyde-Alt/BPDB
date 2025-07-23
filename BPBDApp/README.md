@@ -4,6 +4,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
+*   **Kustomisasi Tema**: Super admin dapat mengubah skema warna aplikasi.
 *   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
 *   **Manajemen Anggota**: Super admin dan sekretaris dapat menambah, mengubah, dan menghapus anggota. Pimpinan dapat melihat daftar anggota dan jabatan.
 *   **Manajemen Perintah Tugas**: Alur kerja lengkap untuk perintah tugas, termasuk pengajuan, persetujuan, pelaporan, dan pengarsipan.
@@ -15,7 +16,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Role dan Hak Akses
 
-*   **Super Admin**: Memiliki akses penuh ke semua fitur dan data.
+*   **Super Admin**: Memiliki akses penuh ke semua fitur dan data, termasuk kustomisasi tema.
 *   **Pimpinan**:
     *   Melihat semua data (anggota, tugas, memo, berita, laporan).
     *   Menyetujui atau menolak perintah tugas.
@@ -56,7 +57,7 @@ Aplikasi ini terdiri dari dua bagian:
 2.  **Buka Direktori API**: Buka terminal dan arahkan ke direktori `bpbd-api`.
 3.  **Instal Dependensi**: Jalankan `composer install`. Jika Anda diminta memasukkan token, lihat [dokumentasi GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) untuk membuat personal access token.
 4.  **Konfigurasi Database**: Salin `.env.example` ke `.env` dan konfigurasikan koneksi database Anda.
-5.  **Buat Tabel**: Jalankan `php artisan migrate` untuk membuat tabel di database Anda.
+5.  **Buat Tabel**: Jalankan `php artisan migrate --seed` untuk membuat tabel dan mengisi data preset tema.
 6.  **Jalankan Server**: Jalankan `php artisan serve` untuk memulai server API.
 
 ### Aplikasi Android

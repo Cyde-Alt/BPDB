@@ -63,6 +63,16 @@ class DashboardFragment : Fragment() {
         } else {
             binding.fabIdCard.visibility = View.GONE
         }
+
+        if (userRole == "super admin") {
+            binding.fabThemeSettings.visibility = View.VISIBLE
+            binding.fabThemeSettings.setOnClickListener {
+                val intent = Intent(activity, ThemeSettingsActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            binding.fabThemeSettings.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {

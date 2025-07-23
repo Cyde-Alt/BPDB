@@ -49,4 +49,13 @@
         android:src="@drawable/ic_id_card"
         app:layout_anchorGravity="bottom|start" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_theme_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_settings"
+        app:layout_anchorGravity="top|end" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

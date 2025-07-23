@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
 
+        ThemeManager.applyTheme(this, bottomNavigationView)
+
         // I want to load the DashboardFragment by default
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
             DashboardFragment()).commit()

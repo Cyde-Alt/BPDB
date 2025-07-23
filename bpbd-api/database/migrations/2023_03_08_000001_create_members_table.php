@@ -19,7 +19,9 @@ class CreateMembersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['operator', 'kepala bidang', 'sekretaris', 'bendahara', 'pimpinan', 'super admin'])->default('operator');
+            $table->enum('role', ['operator', 'kepala bidang', 'sekretaris', 'bendahara', 'pimpinan', 'super admin', 'anggota'])->default('anggota');
+            $table->foreignId('division_id')->nullable()->constrained();
+            $table->enum('placement_status', ['diajukan', 'disetujui', 'ditolak'])->nullable();
             $table->enum('status', ['siaga', 'bertugas', 'non-aktif']);
             $table->rememberToken();
             $table->timestamps();

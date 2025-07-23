@@ -73,6 +73,10 @@ class DashboardFragment : Fragment() {
         } else {
             binding.fabThemeSettings.visibility = View.GONE
         }
+
+        if (userRole == "pimpinan") {
+            // TODO: Add a button or menu item to open PlacementApprovalActivity
+        }
     }
 
     override fun onDestroyView() {

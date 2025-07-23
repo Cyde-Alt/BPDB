@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\DivisionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +43,6 @@ Route::get('/themes/active', [ThemeController::class, 'getActive']);
 Route::apiResource('memos', MemoController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 Route::post('/memos/{memo}/confirm', [MemoController::class, 'confirm'])->middleware('auth:sanctum');
 Route::post('/memos/{memo}/report', [MemoController::class, 'report'])->middleware('auth:sanctum');
+Route::apiResource('divisions', DivisionController::class)->middleware(['auth:sanctum', 'role:super admin,operator']);
 Route::apiResource('news', NewsController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 Route::apiResource('reports', ReportController::class)->middleware(['auth:sanctum', 'role:super admin,pimpinan']);

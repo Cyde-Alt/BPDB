@@ -22,6 +22,8 @@ class Member extends Authenticatable
         'password',
         'role',
         'status',
+        'division_id',
+        'placement_status',
     ];
 
     /**
@@ -46,5 +48,10 @@ class Member extends Authenticatable
     public function tasks()
     {
         return $this->belongsToMany(Task::class, 'task_assignments');
+    }
+
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
     }
 }

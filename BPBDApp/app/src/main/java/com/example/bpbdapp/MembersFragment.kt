@@ -30,8 +30,6 @@ class MembersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fetchMembers()
-
         val sharedPref = activity?.getSharedPreferences("BPBDApp", Context.MODE_PRIVATE)
         val userRole = sharedPref?.getString("user_role", "operator")
 
@@ -43,11 +41,36 @@ class MembersFragment : Fragment() {
         } else {
             binding.fabAddMember.visibility = View.GONE
         }
+
+        if (userRole == "operator") {
+            binding.fabPlaceMember.visibility = View.VISIBLE
+            binding.fabPlaceMember.setOnClickListener {
+                val intent = Intent(activity, PlaceMemberActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            binding.fabPlaceMember.visibility = View.GONE
+        }
+
+        if (userRole == "kepala bidang") {
+            // TODO: Get user's division ID
+            val divisionId = 1
+            fetchMembers(divisionId)
+        } else {
+            fetchMembers()
+        }
     }
 
-    private fun fetchMembers() {
+    private fun fetchMembers(divisionId: Int? = null) {
         binding.progressBar.visibility = View.VISIBLE
-        ApiClient.instance.getMembers().enqueue(object : Callback<List<Member>> {
+        val call = if (divisionId != null) {
+            // TODO: Create getMembersByDivision endpoint
+            // ApiClient.instance.getMembersByDivision(divisionId)
+            ApiClient.instance.getMembers()
+        } else {
+            ApiClient.instance.getMembers()
+        }
+        call.enqueue(object : Callback<List<Member>> {
             override fun onResponse(call: Call<List<Member>>, response: Response<List<Member>>) {
                 binding.progressBar.visibility = View.GONE
                 if (response.isSuccessful) {

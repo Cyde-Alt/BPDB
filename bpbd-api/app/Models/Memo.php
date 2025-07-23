@@ -14,6 +14,10 @@ class Memo extends Model
         'message',
         'recipient_type',
         'status',
+        'creator_id',
+        'approver_id',
+        'report',
+        'attachment_url',
     ];
 
     public function recipients()

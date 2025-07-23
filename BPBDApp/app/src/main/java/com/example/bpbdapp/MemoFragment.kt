@@ -36,7 +36,8 @@ class MemoFragment : Fragment() {
         }
 
         binding.fab.setOnClickListener {
-            // TODO: Implement create memo functionality
+            val intent = Intent(activity, CreateMemoActivity::class.java)
+            startActivity(intent)
         }
     }
 

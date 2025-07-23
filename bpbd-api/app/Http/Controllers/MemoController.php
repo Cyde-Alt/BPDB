@@ -58,10 +58,41 @@ class MemoController extends Controller
         ]);
 
         // TODO: Handle file upload
-        $memo->update(['status' => 'dilaporkan']);
-
-        // TODO: Save report details
+        $memo->update([
+            'status' => 'dilaporkan',
+            'report' => $request->report,
+        ]);
 
         return response()->json(['message' => 'Report submitted']);
+    }
+
+    public function approve(Request $request, Memo $memo)
+    {
+        $memo->update([
+            'status' => 'disetujui',
+            'approver_id' => $request->user()->id,
+        ]);
+
+        return response()->json(['message' => 'Memo approved']);
+    }
+
+    public function reject(Request $request, Memo $memo)
+    {
+        $memo->update(['status' => 'ditolak']);
+
+        return response()->json(['message' => 'Memo rejected']);
+    }
+
+    public function forward(Request $request, Memo $memo)
+    {
+        // TODO: Add logic to forward to pimpinan
+        return response()->json(['message' => 'Memo forwarded']);
+    }
+
+    public function archive(Request $request, Memo $memo)
+    {
+        $memo->update(['status' => 'diarsipkan']);
+
+        return response()->json(['message' => 'Memo archived']);
     }
 }

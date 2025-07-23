@@ -31,9 +31,18 @@ class MemoAdapter(private val memos: List<Memo>) :
             binding.memoStatus.text = memo.status
 
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, MemoDetailActivity::class.java)
-                // TODO: Pass memo ID to the activity
-                itemView.context.startActivity(intent)
+                val sharedPref = itemView.context.getSharedPreferences("BPBDApp", Context.MODE_PRIVATE)
+                val userRole = sharedPref.getString("user_role", "operator")
+
+                if (userRole == "kepala bidang" && memo.status == "dilaporkan") {
+                    val intent = Intent(itemView.context, MemoReviewActivity::class.java)
+                    // TODO: Pass memo ID to the activity
+                    itemView.context.startActivity(intent)
+                } else {
+                    val intent = Intent(itemView.context, MemoDetailActivity::class.java)
+                    // TODO: Pass memo ID to the activity
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }

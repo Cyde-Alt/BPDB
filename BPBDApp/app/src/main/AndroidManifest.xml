@@ -29,6 +29,8 @@
         <activity android:name=".ThemeSettingsActivity" />
         <activity android:name=".PlaceMemberActivity" />
         <activity android:name=".PlacementApprovalActivity" />
+        <activity android:name=".CreateMemoActivity" />
+        <activity android:name=".MemoReviewActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

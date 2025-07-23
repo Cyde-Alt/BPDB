@@ -70,6 +70,7 @@ class DashboardFragment : Fragment() {
                 val intent = Intent(activity, ThemeSettingsActivity::class.java)
                 startActivity(intent)
             }
+            // TODO: Add a button or menu item to open LogActivity
         } else {
             binding.fabThemeSettings.visibility = View.GONE
         }

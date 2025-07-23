@@ -32,6 +32,7 @@
         <activity android:name=".CreateMemoActivity" />
         <activity android:name=".MemoReviewActivity" />
         <activity android:name=".IdCardDisplayActivity" />
+        <activity android:name=".LogActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

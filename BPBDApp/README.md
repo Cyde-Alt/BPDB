@@ -4,13 +4,14 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
-*   **Tampilan ID Card**: Semua pengguna dapat menampilkan ID Card mereka melalui aplikasi.
-*   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
+*   **Log Aktivitas**: Semua aktivitas penting dicatat dan dapat dilihat oleh Super Admin.
+*   **Notifikasi Komprehensif**: Notifikasi *push* untuk berbagai peristiwa penting, seperti tugas baru, persetujuan, dan laporan.
+*   **Memo Penugasan Darurat**: Alur kerja yang kompleks untuk memo, termasuk pembuatan oleh Pimpinan atau Kepala Bidang, persetujuan, konfirmasi, pelaporan, peninjauan, dan pengarsipan.
 *   **Penempatan Bidang**: Operator dapat menempatkan anggota baru ke dalam bidang tertentu dan mengajukannya kepada Pimpinan untuk persetujuan.
 *   **Kustomisasi Tema**: Super admin dapat mengubah skema warna aplikasi.
+*   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
 *   **Manajemen Anggota**: Super admin dan sekretaris dapat menambah, mengubah, dan menghapus anggota. Pimpinan dapat melihat daftar anggota dan jabatan.
 *   **Manajemen Perintah Tugas**: Alur kerja lengkap untuk perintah tugas, termasuk pengajuan, persetujuan, pelaporan, dan pengarsipan.
-*   **Memo Penugasan Darurat**: Alur kerja yang kompleks untuk memo, termasuk pembuatan oleh Pimpinan atau Kepala Bidang, persetujuan, konfirmasi, pelaporan, peninjauan, dan pengarsipan.
 *   **Role dan Hak Akses**: Sistem role dan hak akses untuk setiap pengguna.
 *   **Pelaporan dari Masyarakat**: Memungkinkan masyarakat umum untuk melaporkan kejadian bencana.
 *   **Informasi Cuaca**: Menampilkan informasi cuaca terkini.
@@ -18,7 +19,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Role dan Hak Akses
 
-*   **Super Admin**: Memiliki akses penuh ke semua fitur dan data, termasuk kustomisasi tema.
+*   **Super Admin**: Memiliki akses penuh ke semua fitur dan data, termasuk kustomisasi tema dan log aktivitas.
 *   **Pimpinan**:
     *   Melihat semua data.
     *   Menyetujui atau menolak perintah tugas, penempatan anggota, dan memo.
@@ -48,7 +49,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 Aplikasi ini terdiri dari dua bagian:
 
-1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Menggunakan Retrofit untuk komunikasi jaringan.
+1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Menggunakan Retrofit untuk komunikasi jaringan dan Firebase Cloud Messaging untuk notifikasi.
 2.  **API**: Dibangun dengan PHP dan framework Laravel. Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
 
 ## Cara Menjalankan
@@ -65,14 +66,16 @@ Aplikasi ini terdiri dari dua bagian:
 2.  **Buka Direktori API**: Buka terminal dan arahkan ke direktori `bpbd-api`.
 3.  **Instal Dependensi**: Jalankan `composer install`. Jika Anda diminta memasukkan token, lihat [dokumentasi GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) untuk membuat personal access token.
 4.  **Konfigurasi Database**: Salin `.env.example` ke `.env` dan konfigurasikan koneksi database Anda.
-5.  **Buat Tabel**: Jalankan `php artisan migrate --seed` untuk membuat tabel dan mengisi data preset tema.
-6.  **Jalankan Server**: Jalankan `php artisan serve` untuk memulai server API.
+5.  **Konfigurasi Firebase**: Unduh file `google-services.json` dari konsol Firebase dan letakkan di direktori `bpbd-api/storage/app`.
+6.  **Buat Tabel**: Jalankan `php artisan migrate --seed` untuk membuat tabel dan mengisi data preset tema.
+7.  **Jalankan Server**: Jalankan `php artisan serve` untuk memulai server API.
 
 ### Aplikasi Android
 
 1.  **Buka Proyek**: Buka direktori `BPBDApp` di Android Studio.
-2.  **Konfigurasi Alamat IP API**: Di dalam kelas `ApiClient`, ubah `BASE_URL` menjadi alamat IP lokal Anda (misalnya, `http://192.168.1.10:8000/api/`).
-3.  **Jalankan Aplikasi**: Jalankan aplikasi di emulator Android atau perangkat fisik.
+2.  **Konfigurasi Firebase**: Unduh file `google-services.json` dari konsol Firebase dan letakkan di direktori `BPBDApp/app`.
+3.  **Konfigurasi Alamat IP API**: Di dalam kelas `ApiClient`, ubah `BASE_URL` menjadi alamat IP lokal Anda (misalnya, `http://192.168.1.10:8000/api/`).
+4.  **Jalankan Aplikasi**: Jalankan aplikasi di emulator Android atau perangkat fisik.
 
 ## Pembaruan Aplikasi
 

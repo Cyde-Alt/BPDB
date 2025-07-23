@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_tasks -> selectedFragment = TasksFragment()
             R.id.nav_memo -> selectedFragment = MemoFragment()
             R.id.nav_profile -> selectedFragment = ProfileFragment()
+            R.id.nav_chat -> {
+                val intent = Intent(this, ChatListActivity::class.java)
+                startActivity(intent)
+                return@OnNavigationItemSelectedListener false
+            }
         }
 
         if (selectedFragment != null) {

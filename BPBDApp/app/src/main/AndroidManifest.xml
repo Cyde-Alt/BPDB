@@ -33,6 +33,8 @@
         <activity android:name=".MemoReviewActivity" />
         <activity android:name=".IdCardDisplayActivity" />
         <activity android:name=".LogActivity" />
+        <activity android:name=".ChatListActivity" />
+        <activity android:name=".ChatActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

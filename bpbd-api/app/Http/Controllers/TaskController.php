@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -12,16 +14,9 @@ class TaskController extends Controller
         return Task::with('members')->get();
     }
 
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'location' => 'required',
-            'disaster_type' => 'required',
-            'status' => 'required|in:diterima,dikerjakan,selesai',
-        ]);
-
-        $task = Task::create($request->all());
+        $task = Task::create($request->validated());
 
         if ($request->has('member_ids')) {
             $task->members()->attach($request->member_ids);
@@ -35,16 +30,9 @@ class TaskController extends Controller
         return $task->load('members');
     }
 
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
-        $request->validate([
-            'title' => 'required',
-            'location' => 'required',
-            'disaster_type' => 'required',
-            'status' => 'required|in:diterima,dikerjakan,selesai',
-        ]);
-
-        $task->update($request->all());
+        $task->update($request->validated());
 
         if ($request->has('member_ids')) {
             $task->members()->sync($request->member_ids);

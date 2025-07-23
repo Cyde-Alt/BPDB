@@ -16,7 +16,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 Aplikasi ini terdiri dari dua bagian:
 
-1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Bertanggung jawab untuk menampilkan antarmuka pengguna dan berinteraksi dengan API.
+1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Menggunakan Retrofit untuk komunikasi jaringan.
 2.  **API**: Dibangun dengan PHP dan framework Laravel. Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
 
 ## Cara Menjalankan
@@ -39,7 +39,7 @@ Aplikasi ini terdiri dari dua bagian:
 ### Aplikasi Android
 
 1.  **Buka Proyek**: Buka direktori `BPBDApp` di Android Studio.
-2.  **Konfigurasi Alamat IP API**: Di dalam kode aplikasi Android, cari tempat di mana alamat IP API didefinisikan (biasanya dalam file konstanta atau konfigurasi) dan ubah menjadi alamat IP lokal Anda (misalnya, `http://192.168.1.10:8000/api/`).
+2.  **Konfigurasi Alamat IP API**: Di dalam kelas `ApiClient`, ubah `BASE_URL` menjadi alamat IP lokal Anda (misalnya, `http://192.168.1.10:8000/api/`).
 3.  **Jalankan Aplikasi**: Jalankan aplikasi di emulator Android atau perangkat fisik.
 
 ## Pembaruan Aplikasi

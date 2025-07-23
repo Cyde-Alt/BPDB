@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMemoRequest;
+use App\Http\Requests\UpdateMemoRequest;
 use App\Models\Memo;
 use Illuminate\Http\Request;
 
@@ -12,14 +14,15 @@ class MemoController extends Controller
         return Memo::all();
     }
 
-    public function store(Request $request)
+    public function store(StoreMemoRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'message' => 'required',
-        ]);
+        $memo = Memo::create($request->validated());
 
-        return Memo::create($request->all());
+        if ($request->recipient_type === 'individu' && $request->has('recipient_ids')) {
+            $memo->recipients()->attach($request->recipient_ids);
+        }
+
+        return $memo;
     }
 
     public function show(Memo $memo)
@@ -27,14 +30,9 @@ class MemoController extends Controller
         return $memo;
     }
 
-    public function update(Request $request, Memo $memo)
+    public function update(UpdateMemoRequest $request, Memo $memo)
     {
-        $request->validate([
-            'title' => 'required',
-            'message' => 'required',
-        ]);
-
-        $memo->update($request->all());
+        $memo->update($request->validated());
 
         return $memo;
     }

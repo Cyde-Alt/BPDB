@@ -7,8 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bpbdapp.databinding.FragmentMembersBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MembersFragment : Fragment() {
 
@@ -26,16 +30,7 @@ class MembersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val members = listOf(
-            Member("1", "John Doe", "pimpinan", "siaga"),
-            Member("2", "Jane Smith", "sekretaris", "bertugas"),
-            Member("3", "Peter Jones", "operator", "non-aktif")
-        )
-
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = MemberAdapter(members)
-        }
+        fetchMembers()
 
         val sharedPref = activity?.getSharedPreferences("BPBDApp", Context.MODE_PRIVATE)
         val userRole = sharedPref?.getString("user_role", "operator")
@@ -48,6 +43,29 @@ class MembersFragment : Fragment() {
         } else {
             binding.fabAddMember.visibility = View.GONE
         }
+    }
+
+    private fun fetchMembers() {
+        binding.progressBar.visibility = View.VISIBLE
+        ApiClient.instance.getMembers().enqueue(object : Callback<List<Member>> {
+            override fun onResponse(call: Call<List<Member>>, response: Response<List<Member>>) {
+                binding.progressBar.visibility = View.GONE
+                if (response.isSuccessful) {
+                    val members = response.body()
+                    if (members != null) {
+                        binding.recyclerView.apply {
+                            layoutManager = LinearLayoutManager(context)
+                            adapter = MemberAdapter(members)
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Member>>, t: Throwable) {
+                binding.progressBar.visibility = View.GONE
+                Log.e("MembersFragment", "Error fetching members", t)
+            }
+        })
     }
 
     override fun onDestroyView() {

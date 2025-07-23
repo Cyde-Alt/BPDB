@@ -75,6 +75,9 @@ class IdCardDesignerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Listener untuk menangani event drag-and-drop pada kanvas.
+     */
     private val dragListener = View.OnDragListener { v, event ->
         when (event.action) {
             DragEvent.ACTION_DRAG_STARTED -> {

@@ -87,6 +87,7 @@ class MembersFragment : Fragment() {
             override fun onFailure(call: Call<List<Member>>, t: Throwable) {
                 binding.progressBar.visibility = View.GONE
                 Log.e("MembersFragment", "Error fetching members", t)
+                // TODO: Show a user-friendly error message
             }
         })
     }

@@ -63,8 +63,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (selectedFragment != null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-                selectedFragment).commit()
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.fragment_container, selectedFragment)
+                .commit()
         }
 
         true

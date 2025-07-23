@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_members -> selectedFragment = MembersFragment()
             R.id.nav_tasks -> selectedFragment = TasksFragment()
             R.id.nav_memo -> selectedFragment = MemoFragment()
+            R.id.nav_profile -> selectedFragment = ProfileFragment()
         }
 
         if (selectedFragment != null) {

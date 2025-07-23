@@ -4,12 +4,13 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 ## Fitur
 
-*   **Memo Penugasan Darurat**: Alur kerja yang kompleks untuk memo, termasuk pembuatan oleh Pimpinan atau Kepala Bidang, persetujuan, konfirmasi, pelaporan, peninjauan, dan pengarsipan.
+*   **Tampilan ID Card**: Semua pengguna dapat menampilkan ID Card mereka melalui aplikasi.
+*   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
 *   **Penempatan Bidang**: Operator dapat menempatkan anggota baru ke dalam bidang tertentu dan mengajukannya kepada Pimpinan untuk persetujuan.
 *   **Kustomisasi Tema**: Super admin dapat mengubah skema warna aplikasi.
-*   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
 *   **Manajemen Anggota**: Super admin dan sekretaris dapat menambah, mengubah, dan menghapus anggota. Pimpinan dapat melihat daftar anggota dan jabatan.
 *   **Manajemen Perintah Tugas**: Alur kerja lengkap untuk perintah tugas, termasuk pengajuan, persetujuan, pelaporan, dan pengarsipan.
+*   **Memo Penugasan Darurat**: Alur kerja yang kompleks untuk memo, termasuk pembuatan oleh Pimpinan atau Kepala Bidang, persetujuan, konfirmasi, pelaporan, peninjauan, dan pengarsipan.
 *   **Role dan Hak Akses**: Sistem role dan hak akses untuk setiap pengguna.
 *   **Pelaporan dari Masyarakat**: Memungkinkan masyarakat umum untuk melaporkan kejadian bencana.
 *   **Informasi Cuaca**: Menampilkan informasi cuaca terkini.

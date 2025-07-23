@@ -31,6 +31,7 @@
         <activity android:name=".PlacementApprovalActivity" />
         <activity android:name=".CreateMemoActivity" />
         <activity android:name=".MemoReviewActivity" />
+        <activity android:name=".IdCardDisplayActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

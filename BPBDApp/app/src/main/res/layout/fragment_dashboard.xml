@@ -40,4 +40,13 @@
         android:src="@drawable/ic_report"
         app:layout_anchorGravity="bottom|end" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_id_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_id_card"
+        app:layout_anchorGravity="bottom|start" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

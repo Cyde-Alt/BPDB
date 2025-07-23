@@ -53,6 +53,16 @@ class DashboardFragment : Fragment() {
             val intent = Intent(activity, ReportActivity::class.java)
             startActivity(intent)
         }
+
+        if (userRole == "super admin" || userRole == "operator") {
+            binding.fabIdCard.visibility = View.VISIBLE
+            binding.fabIdCard.setOnClickListener {
+                val intent = Intent(activity, IdCardDesignerActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            binding.fabIdCard.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {

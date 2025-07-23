@@ -25,6 +25,7 @@
         <activity android:name=".CreateTaskActivity" />
         <activity android:name=".TaskDetailActivity" />
         <activity android:name=".TaskReportActivity" />
+        <activity android:name=".IdCardDesignerActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"

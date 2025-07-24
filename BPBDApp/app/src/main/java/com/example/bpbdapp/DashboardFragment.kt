@@ -79,7 +79,13 @@ class DashboardFragment : Fragment() {
         }
 
         if (userRole == "super admin" || userRole == "pimpinan" || userRole == "operator") {
-            // TODO: Add a FAB for creating news
+            binding.fabAddNews.visibility = View.VISIBLE
+            binding.fabAddNews.setOnClickListener {
+                val intent = Intent(activity, CreateNewsActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            binding.fabAddNews.visibility = View.GONE
         }
 
         if (userRole == "pimpinan") {

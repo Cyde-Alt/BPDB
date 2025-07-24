@@ -54,8 +54,17 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 Aplikasi ini terdiri dari dua bagian:
 
-1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Menggunakan Retrofit untuk komunikasi jaringan dan Firebase (Realtime Database, Storage, Cloud Messaging) untuk fitur *real-time*.
-2.  **API**: Dibangun dengan PHP dan framework Laravel. Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
+1.  **Aplikasi Android**: Dibangun dengan Kotlin, mengikuti arsitektur MVVM (Model-View-ViewModel) dengan Komponen Arsitektur Android (ViewModel, LiveData). Menggunakan Retrofit untuk komunikasi jaringan dan Firebase (Realtime Database, Storage, Cloud Messaging) untuk fitur *real-time*.
+2.  **API**: Dibangun dengan PHP dan framework Laravel (versi 8.x). Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
+
+## Arsitektur Aplikasi Android
+
+Aplikasi ini secara aktif direfaktor untuk menggunakan arsitektur MVVM secara konsisten. Komponen utama dari arsitektur ini adalah:
+
+*   **View**: Aktivitas dan Fragmen yang bertanggung jawab untuk menampilkan UI.
+*   **ViewModel**: Menyimpan dan mengelola data terkait UI dengan cara yang sadar siklus hidup. ViewModel memungkinkan data bertahan dari perubahan konfigurasi seperti rotasi layar.
+*   **Repository**: (Dalam pengembangan) Bertindak sebagai satu sumber kebenaran untuk data, mengelola sumber data (jaringan, cache, dll.).
+*   **Retrofit**: Klien HTTP yang aman jenis untuk Android dan Java, digunakan untuk melakukan panggilan jaringan ke API.
 
 ## Instalasi dan Konfigurasi (Pengembangan Lokal)
 

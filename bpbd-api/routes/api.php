@@ -34,6 +34,8 @@ Route::middleware(['auth:sanctum', 'role:super admin,pimpinan,kepala bidang,sekr
     Route::get('/members/{member}', [MemberController::class, 'show']);
 });
 
+Route::post('/members/update-fcm-token', [MemberController::class, 'updateFcmToken'])->middleware('auth:sanctum');
+
 Route::apiResource('tasks', TaskController::class)->middleware(['auth:sanctum', 'role:super admin,kepala bidang,sekretaris']);
 Route::post('/tasks/{task}/approve', [TaskController::class, 'approve'])->middleware(['auth:sanctum', 'role:super admin,pimpinan']);
 Route::post('/tasks/{task}/reject', [TaskController::class, 'reject'])->middleware(['auth:sanctum', 'role:super admin,pimpinan']);

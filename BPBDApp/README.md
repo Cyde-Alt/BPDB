@@ -10,7 +10,6 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 *   **Log Aktivitas**: Semua aktivitas penting dicatat dan dapat dilihat oleh Super Admin.
 *   **Notifikasi Komprehensif**: Notifikasi *push* untuk berbagai peristiwa penting, seperti tugas baru, persetujuan, dan laporan.
 *   **Memo Penugasan Darurat**: Alur kerja yang kompleks untuk memo, termasuk pembuatan oleh Pimpinan atau Kepala Bidang, persetujuan, konfirmasi, pelaporan, peninjauan, dan pengarsipan.
-*   **Penempatan Bidang**: Operator dapat menempatkan anggota baru ke dalam bidang tertentu dan mengajukannya kepada Pimpinan untuk persetujuan.
 *   **Kustomisasi Tema**: Super admin dapat mengubah skema warna aplikasi.
 *   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
 *   **Manajemen Anggota**: Super admin dan sekretaris dapat menambah, mengubah, dan menghapus anggota. Pimpinan dapat melihat daftar anggota dan jabatan.
@@ -24,7 +23,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 *   **Super Admin**: Memiliki akses penuh ke semua fitur dan data, termasuk kustomisasi tema, log aktivitas, dan manajemen grup *chat*.
 *   **Pimpinan**:
     *   Melihat semua data, termasuk laporan keuangan.
-    *   Menyetujui atau menolak perintah tugas, penempatan anggota, dan memo.
+    *   Menyetujui atau menolak perintah tugas dan memo.
     *   Membuat dan mengirim memo dan berita.
 *   **Kepala Bidang**:
     *   Melihat anggota dan tugas di bidangnya.
@@ -42,7 +41,6 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
     *   Melihat anggota.
 *   **Operator**:
     *   Mengelola berita.
-    *   Menempatkan anggota baru ke dalam bidang.
     *   Melihat tugas yang ditugaskan kepadanya.
     *   Mengirimkan laporan tugas.
     *   Membuat ID Card.
@@ -54,8 +52,17 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 
 Aplikasi ini terdiri dari dua bagian:
 
-1.  **Aplikasi Android**: Dibangun dengan Kotlin dan arsitektur MVVM. Menggunakan Retrofit untuk komunikasi jaringan dan Firebase (Realtime Database, Storage, Cloud Messaging) untuk fitur *real-time*.
-2.  **API**: Dibangun dengan PHP dan framework Laravel. Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
+1.  **Aplikasi Android**: Dibangun dengan Kotlin, mengikuti arsitektur MVVM (Model-View-ViewModel) dengan Komponen Arsitektur Android (ViewModel, LiveData). Menggunakan Retrofit untuk komunikasi jaringan dan Firebase (Realtime Database, Storage, Cloud Messaging) untuk fitur *real-time*.
+2.  **API**: Dibangun dengan PHP dan framework Laravel (versi 8.x). Bertanggung jawab untuk menghubungkan aplikasi Android dengan database MySQL.
+
+## Arsitektur Aplikasi Android
+
+Aplikasi ini secara aktif direfaktor untuk menggunakan arsitektur MVVM secara konsisten. Komponen utama dari arsitektur ini adalah:
+
+*   **View**: Aktivitas dan Fragmen yang bertanggung jawab untuk menampilkan UI.
+*   **ViewModel**: Menyimpan dan mengelola data terkait UI dengan cara yang sadar siklus hidup. ViewModel memungkinkan data bertahan dari perubahan konfigurasi seperti rotasi layar.
+*   **Repository**: (Dalam pengembangan) Bertindak sebagai satu sumber kebenaran untuk data, mengelola sumber data (jaringan, cache, dll.).
+*   **Retrofit**: Klien HTTP yang aman jenis untuk Android dan Java, digunakan untuk melakukan panggilan jaringan ke API.
 
 ## Instalasi dan Konfigurasi (Pengembangan Lokal)
 
@@ -68,43 +75,46 @@ Aplikasi ini terdiri dari dua bagian:
 
 ### Backend (API)
 
-1.  **Kloning Repositori**:
-    ```bash
-    git clone <URL_REPOSITORI_ANDA>
-    cd <NAMA_DIREKTORI_PROYEK>/bpbd-api
-    ```
-
-2.  **Instal Dependensi**:
-    ```bash
-    composer install
-    npm install
-    ```
-    *Catatan: Jika Composer meminta token GitHub, lihat [dokumentasi GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) untuk membuatnya.*
-
-3.  **Konfigurasi Lingkungan**:
-    *   Salin file `.env.example` menjadi `.env`: `cp .env.example .env`
-    *   Buat kunci aplikasi: `php artisan key:generate`
-    *   Buka file `.env` dan konfigurasikan koneksi database Anda (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
-    *   Unduh file `google-services.json` dari konsol Firebase dan letakkan di direktori `storage/app`.
-
-4.  **Database**:
-    *   Buat database baru di MySQL sesuai dengan nama yang Anda masukkan di `.env`.
-    *   Jalankan migrasi dan seeder: `php artisan migrate --seed`
-
-5.  **Jalankan Server**:
-    ```bash
-    php artisan serve
-    ```
-    API akan berjalan di `http://127.0.0.1:8000`.
+Pastikan Anda telah berhasil menginstal dan menjalankan backend (API) sesuai dengan petunjuk di file `bpbd-api/README.md` sebelum melanjutkan ke langkah berikutnya. API harus berjalan di `http://127.0.0.1:8000`.
 
 ### Frontend (Aplikasi Android)
 
-1.  **Buka Proyek**: Buka direktori `BPBDApp` di Android Studio.
-2.  **Konfigurasi Firebase**: Unduh file `google-services.json` dari konsol Firebase Anda dan letakkan di direktori `BPBDApp/app`.
-3.  **Konfigurasi Alamat IP API**:
-    *   Buka file `BPBDApp/app/src/main/java/com/example/bpbdapp/ApiClient.kt`.
-    *   Ubah nilai `BASE_URL` menjadi alamat IP lokal Anda dan port server API (misalnya, `http://192.168.1.10:8000/api/`). Pastikan perangkat atau emulator Anda dapat mengakses alamat ini.
-4.  **Jalankan Aplikasi**: Klik tombol "Run" di Android Studio untuk menginstal dan menjalankan aplikasi di emulator atau perangkat fisik.
+**1. Buka Proyek di Android Studio**
+
+*   Buka Android Studio.
+*   Pilih `File > Open...` atau `Open an Existing Project`.
+*   Arahkan ke direktori tempat Anda mengkloning repositori, lalu pilih direktori `BPBDApp` dan klik "OK".
+*   Tunggu hingga Android Studio selesai melakukan sinkronisasi dan membangun proyek.
+
+**2. Konfigurasi Firebase**
+
+*   Unduh file `google-services.json` Anda dari konsol Firebase.
+*   Salin file ini dan tempelkan ke dalam direktori `BPBDApp/app/`.
+
+**3. Konfigurasi Alamat IP API**
+
+Ini adalah langkah **paling penting** untuk menghubungkan aplikasi ke API lokal Anda.
+
+*   **Jika menggunakan Emulator Android**:
+    *   Buka file `BPBDApp/app/build.gradle`.
+    *   Temukan baris `buildConfigField "String", "API_URL", "\"http://10.0.2.2:8000/api/\""` di dalam `debug`. Alamat `10.0.2.2` adalah alamat khusus yang digunakan emulator untuk terhubung ke `localhost` komputer Anda. Seharusnya ini sudah berfungsi tanpa perubahan.
+*   **Jika menggunakan Perangkat Android Fisik**:
+    *   Pastikan perangkat Android Anda dan komputer Anda terhubung ke **jaringan Wi-Fi yang sama**.
+    *   Temukan alamat IP lokal komputer Anda.
+        *   **Di Windows**: Buka Command Prompt dan ketik `ipconfig`. Cari alamat "IPv4 Address".
+        *   **Di macOS/Linux**: Buka Terminal dan ketik `ifconfig` atau `ip a`. Cari alamat IP Anda (biasanya di bawah `en0` atau `wlan0`). Alamatnya akan terlihat seperti `192.168.1.x`.
+    *   Buka file `BPBDApp/app/build.gradle`.
+    *   Ubah nilai `API_URL` di dalam `debug` menjadi alamat IP lokal Anda. **Jangan lupa sertakan port `8000` dan `/api/` di akhir.**
+        ```groovy
+        // Contoh perubahan
+        buildConfigField "String", "API_URL", "\"http://192.168.1.10:8000/api/\""
+        ```
+    *   Klik "Sync Now" di Android Studio setelah melakukan perubahan.
+
+**4. Jalankan Aplikasi**
+
+*   Pilih perangkat (emulator atau perangkat fisik Anda) dari daftar perangkat yang tersedia di Android Studio.
+*   Klik tombol "Run" (ikon segitiga hijau) untuk menginstal dan menjalankan aplikasi.
 
 ## Instalasi dan Konfigurasi (Produksi/Hosting)
 

@@ -45,4 +45,17 @@ class MemberController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function updateFcmToken(Request $request)
+    {
+        $request->validate([
+            'fcm_token' => 'required|string',
+        ]);
+
+        $member = auth()->user();
+        $member->fcm_token = $request->fcm_token;
+        $member->save();
+
+        return response()->json(['message' => 'FCM token updated successfully']);
+    }
 }

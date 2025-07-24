@@ -27,8 +27,6 @@
         <activity android:name=".TaskReportActivity" />
         <activity android:name=".IdCardDesignerActivity" />
         <activity android:name=".ThemeSettingsActivity" />
-        <activity android:name=".PlaceMemberActivity" />
-        <activity android:name=".PlacementApprovalActivity" />
         <activity android:name=".CreateMemoActivity" />
         <activity android:name=".MemoReviewActivity" />
         <activity android:name=".IdCardDisplayActivity" />

@@ -7,30 +7,33 @@ use App\Models\Task;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 
+use App\Models\Member;
+use App\Notifications\NewTaskAssigned;
+use App\Notifications\NewTaskForApproval;
+
 class TaskObserver
 {
     public function created(Task $task)
     {
         $this->logActivity('created', $task);
 
-        // Send notification to pimpinan
-        // TODO: Get pimpinan's device token
-        $deviceToken = 'pimpinan_device_token';
-        $message = CloudMessage::withTarget('token', $deviceToken)
-            ->withNotification(Notification::create('Tugas Baru', 'Tugas baru telah dibuat dan perlu persetujuan Anda.'))
-            ->withData(['task_id' => $task->id]);
-
-        try {
-            $messaging = app('firebase.messaging');
-            $messaging->send($message);
-        } catch (\Exception $e) {
-            // Log error
+        // Notify leaders for approval
+        $leaders = Member::where('role', 'pimpinan')->get();
+        foreach ($leaders as $leader) {
+            $leader->notify(new NewTaskForApproval($task));
         }
     }
 
     public function updated(Task $task)
     {
         $this->logActivity('updated', $task);
+
+        // If the task is approved, notify assigned members
+        if ($task->wasChanged('status') && $task->status === 'disetujui') {
+            foreach ($task->members as $member) {
+                $member->notify(new NewTaskAssigned($task));
+            }
+        }
     }
 
     public function deleted(Task $task)

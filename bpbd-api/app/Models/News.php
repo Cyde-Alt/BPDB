@@ -11,7 +11,16 @@ class News extends Model
 
     protected $fillable = [
         'title',
-        'summary',
+        'content',
         'image_url',
     ];
+
+    public static function getValidationRules()
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image_url' => 'nullable|url',
+        ];
+    }
 }

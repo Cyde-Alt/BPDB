@@ -4,5 +4,6 @@ data class Memo(
     val id: String,
     val title: String,
     val message: String,
-    val timestamp: Long
+    val status: String,
+    val createdAt: Long
 )

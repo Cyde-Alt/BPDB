@@ -37,8 +37,6 @@ class DashboardFragment : Fragment() {
         setupRecyclerView()
         observeViewModel()
 
-        newsViewModel.getNews()
-
 
         // Inflate the weather view stub
         val weatherView = binding.weatherViewStub.inflate()
@@ -102,7 +100,11 @@ class DashboardFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        newsViewModel.news.observe(viewLifecycleOwner, { newsList ->
+        newsViewModel.allNews.observe(viewLifecycleOwner, { newsEntities ->
+            val newsList = newsEntities.map {
+                News(it.id, it.title, it.content, it.imageUrl, it.createdAt)
+            }
+
             if (newsList.isNullOrEmpty()) {
                 binding.recyclerView.visibility = View.GONE
                 binding.emptyView.visibility = View.VISIBLE
@@ -112,14 +114,6 @@ class DashboardFragment : Fragment() {
                 newsAdapter = NewsAdapter(newsList)
                 binding.recyclerView.adapter = newsAdapter
             }
-        })
-
-        newsViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
-            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        })
-
-        newsViewModel.errorMessage.observe(viewLifecycleOwner, { errorMessage ->
-            Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
         })
     }
 

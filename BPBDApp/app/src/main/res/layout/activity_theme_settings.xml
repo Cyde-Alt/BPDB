@@ -30,26 +30,26 @@
         app:layout_constraintTop_toBottomOf="@+id/theme_presets_label">
 
         <RadioButton
-            android:id="@+id/default_theme_button"
+            android:id="@+id/blue_theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Default BPBD" />
+            android:text="Biru (Default)" />
 
         <RadioButton
-            android:id="@+id/independence_theme_button"
+            android:id="@+id/orange_theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kemerdekaan" />
+            android:text="Oranye (Darurat)" />
 
         <RadioButton
-            android:id="@+id/eid_theme_button"
+            android:id="@+id/gray_theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Idul Fitri" />
+            android:text="Abu-abu (Netral)" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/apply_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

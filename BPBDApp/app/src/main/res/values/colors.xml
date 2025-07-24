@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bpbd_blue">#005A9E</color>
-    <color name="bpbd_orange">#F58220</color>
-    <color name="bpbd_white">#FFFFFF</color>
-    <color name="bpbd_black">#000000</color>
-    <color name="bpbd_grey">#E0E0E0</color>
+    <!-- Base Palette -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Default Theme (BPBD Blue) -->
+    <color name="blue_primary">#005A9E</color>
+    <color name="blue_primary_dark">#003366</color>
+    <color name="blue_secondary">#007BFF</color>
+
+    <!-- Warning/Emergency Theme (BPBD Orange) -->
+    <color name="orange_primary">#F58220</color>
+    <color name="orange_primary_dark">#D86A0D</color>
+    <color name="orange_secondary">#FFAB40</color>
+
+    <!-- Neutral Theme (Gray) -->
+    <color name="gray_primary">#455A64</color>
+    <color name="gray_primary_dark">#263238</color>
+    <color name="gray_secondary">#78909C</color>
 </resources>

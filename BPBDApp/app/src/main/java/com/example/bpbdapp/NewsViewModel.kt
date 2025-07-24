@@ -7,33 +7,27 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NewsViewModel : ViewModel() {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
-    private val _news = MutableLiveData<List<News>>()
-    val news: LiveData<List<News>> = _news
+class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    private val repository: NewsRepository
+    val allNews: LiveData<List<NewsEntity>>
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
+    init {
+        val newsDao = AppDatabase.getDatabase(application).newsDao()
+        repository = NewsRepository(newsDao, ApiClient.instance)
+        allNews = repository.allNews
+        refreshDataFromServer()
+    }
 
-    fun getNews() {
-        _isLoading.value = true
-        ApiClient.instance.getNews().enqueue(object : Callback<List<News>> {
-            override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    _news.value = response.body()
-                } else {
-                    _errorMessage.value = "Gagal memuat berita: ${response.message()}"
-                }
-            }
-
-            override fun onFailure(call: Call<List<News>>, t: Throwable) {
-                _isLoading.value = false
-                _errorMessage.value = "Gagal memuat berita: ${t.message}"
-            }
-        })
+    private fun refreshDataFromServer() {
+        viewModelScope.launch {
+            repository.refreshNews()
+        }
     }
 }

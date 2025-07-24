@@ -11,10 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.content.Intent
 import com.example.bpbdapp.databinding.FragmentDashboardBinding
 
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
+    private lateinit var newsViewModel: NewsViewModel
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +32,14 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+
+        setupRecyclerView()
+        observeViewModel()
+
+        newsViewModel.getNews()
+
+
         // Inflate the weather view stub
         val weatherView = binding.weatherViewStub.inflate()
 
@@ -38,16 +51,6 @@ class DashboardFragment : Fragment() {
         weatherView.findViewById<TextView>(R.id.weather_temperature).text = "${weather.temperature.toInt()}°C"
         weatherView.findViewById<TextView>(R.id.weather_description).text = weather.description
         // TODO: Load weather icon using a library like Glide or Picasso
-
-        val newsList = listOf(
-            News("1", "Banjir di Jakarta", "Banjir merendam beberapa wilayah di Jakarta akibat hujan deras.", "", System.currentTimeMillis()),
-            News("2", "Gunung Merapi Erupsi", "Gunung Merapi kembali erupsi dan mengeluarkan awan panas.", "", System.currentTimeMillis())
-        )
-
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = NewsAdapter(newsList)
-        }
 
         binding.fabReport.setOnClickListener {
             val intent = Intent(activity, ReportActivity::class.java)
@@ -83,6 +86,30 @@ class DashboardFragment : Fragment() {
             // TODO: Add a button or menu item to open PlacementApprovalActivity
         }
     }
+
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter(emptyList())
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = newsAdapter
+        }
+    }
+
+    private fun observeViewModel() {
+        newsViewModel.news.observe(viewLifecycleOwner, { newsList ->
+            newsAdapter = NewsAdapter(newsList)
+            binding.recyclerView.adapter = newsAdapter
+        })
+
+        newsViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
+
+        newsViewModel.errorMessage.observe(viewLifecycleOwner, { errorMessage ->
+            Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
+        })
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

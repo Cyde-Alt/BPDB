@@ -103,8 +103,15 @@ class DashboardFragment : Fragment() {
 
     private fun observeViewModel() {
         newsViewModel.news.observe(viewLifecycleOwner, { newsList ->
-            newsAdapter = NewsAdapter(newsList)
-            binding.recyclerView.adapter = newsAdapter
+            if (newsList.isNullOrEmpty()) {
+                binding.recyclerView.visibility = View.GONE
+                binding.emptyView.visibility = View.VISIBLE
+            } else {
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.emptyView.visibility = View.GONE
+                newsAdapter = NewsAdapter(newsList)
+                binding.recyclerView.adapter = newsAdapter
+            }
         })
 
         newsViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->

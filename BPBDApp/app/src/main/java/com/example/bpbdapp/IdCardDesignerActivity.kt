@@ -41,6 +41,15 @@ class IdCardDesignerActivity : AppCompatActivity() {
             viewModel.addQrCodeElement("content") // Contoh konten
         }
 
+        binding.saveButton.setOnClickListener {
+            viewModel.saveLayout(this)
+            com.google.android.material.snackbar.Snackbar.make(binding.root, "Layout disimpan!", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+        }
+
+        binding.loadButton.setOnClickListener {
+            viewModel.loadLayout(this)
+        }
+
         // ... (Tombol lain akan diimplementasikan nanti)
     }
 

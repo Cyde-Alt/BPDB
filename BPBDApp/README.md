@@ -10,7 +10,6 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 *   **Log Aktivitas**: Semua aktivitas penting dicatat dan dapat dilihat oleh Super Admin.
 *   **Notifikasi Komprehensif**: Notifikasi *push* untuk berbagai peristiwa penting, seperti tugas baru, persetujuan, dan laporan.
 *   **Memo Penugasan Darurat**: Alur kerja yang kompleks untuk memo, termasuk pembuatan oleh Pimpinan atau Kepala Bidang, persetujuan, konfirmasi, pelaporan, peninjauan, dan pengarsipan.
-*   **Penempatan Bidang**: Operator dapat menempatkan anggota baru ke dalam bidang tertentu dan mengajukannya kepada Pimpinan untuk persetujuan.
 *   **Kustomisasi Tema**: Super admin dapat mengubah skema warna aplikasi.
 *   **Pembuatan ID Card**: Super admin dan operator dapat mendesain dan menghasilkan ID Card untuk anggota.
 *   **Manajemen Anggota**: Super admin dan sekretaris dapat menambah, mengubah, dan menghapus anggota. Pimpinan dapat melihat daftar anggota dan jabatan.
@@ -24,7 +23,7 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
 *   **Super Admin**: Memiliki akses penuh ke semua fitur dan data, termasuk kustomisasi tema, log aktivitas, dan manajemen grup *chat*.
 *   **Pimpinan**:
     *   Melihat semua data, termasuk laporan keuangan.
-    *   Menyetujui atau menolak perintah tugas, penempatan anggota, dan memo.
+    *   Menyetujui atau menolak perintah tugas dan memo.
     *   Membuat dan mengirim memo dan berita.
 *   **Kepala Bidang**:
     *   Melihat anggota dan tugas di bidangnya.
@@ -42,7 +41,6 @@ Aplikasi Android untuk manajemen anggota Badan Penanggulangan Bencana Daerah (BP
     *   Melihat anggota.
 *   **Operator**:
     *   Mengelola berita.
-    *   Menempatkan anggota baru ke dalam bidang.
     *   Melihat tugas yang ditugaskan kepadanya.
     *   Mengirimkan laporan tugas.
     *   Membuat ID Card.

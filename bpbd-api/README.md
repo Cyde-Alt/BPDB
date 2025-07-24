@@ -11,6 +11,7 @@ API untuk aplikasi manajemen BPBD.
 *   `GET /api/members/{member}` - Mendapatkan anggota tertentu
 *   `PUT/PATCH /api/members/{member}` - Memperbarui anggota tertentu
 *   `DELETE /api/members/{member}` - Menghapus anggota tertentu
+*   `POST /api/members/update-fcm-token` - Memperbarui token FCM untuk pengguna yang diautentikasi
 
 ### Tasks
 

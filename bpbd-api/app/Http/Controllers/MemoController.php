@@ -7,11 +7,13 @@ use App\Http\Requests\UpdateMemoRequest;
 use App\Models\Memo;
 use Illuminate\Http\Request;
 
-class MemoController extends Controller
+use App\Models\Memo;
+
+class MemoController extends BaseController
 {
-    public function index()
+    public function __construct()
     {
-        return Memo::all();
+        $this->model = new Memo();
     }
 
     public function store(StoreMemoRequest $request)

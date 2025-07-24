@@ -7,25 +7,29 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 object ThemeManager {
+    const val THEME_BLUE = 0
+    const val THEME_ORANGE = 1
+    const val THEME_GRAY = 2
 
-    fun applyTheme(context: Context, bottomNavigationView: BottomNavigationView) {
-        // TODO: Fetch active theme from API
-        // For now, let's use a dummy theme
-        val primaryColor = Color.parseColor("#FF0000") // Red
-        val secondaryColor = Color.parseColor("#FFFFFF") // White
+    fun applyTheme(activity: android.app.Activity) {
+        val sharedPref = activity.getSharedPreferences("ThemePref", Context.MODE_PRIVATE)
+        val theme = sharedPref.getInt("theme", THEME_BLUE)
+        activity.setTheme(getThemeResource(theme))
+    }
 
-        val colorStateList = ColorStateList(
-            arrayOf(
-                intArrayOf(android.R.attr.state_checked),
-                intArrayOf(-android.R.attr.state_checked)
-            ),
-            intArrayOf(
-                primaryColor,
-                secondaryColor
-            )
-        )
+    fun setTheme(context: Context, theme: Int) {
+        val sharedPref = context.getSharedPreferences("ThemePref", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putInt("theme", theme)
+            apply()
+        }
+    }
 
-        bottomNavigationView.itemIconTintList = colorStateList
-        bottomNavigationView.itemTextColor = colorStateList
+    fun getThemeResource(theme: Int): Int {
+        return when (theme) {
+            THEME_ORANGE -> R.style.Theme_BPBDApp_Orange
+            THEME_GRAY -> R.style.Theme_BPBDApp_Gray
+            else -> R.style.Theme_BPBDApp_Blue
+        }
     }
 }

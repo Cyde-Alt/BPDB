@@ -2,15 +2,31 @@
     <!-- Base application theme. -->
     <style name="Theme.BPBDApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/bpbd_blue</item>
-        <item name="colorPrimaryVariant">@color/bpbd_blue</item>
-        <item name="colorOnPrimary">@color/bpbd_white</item>
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorPrimaryVariant">@color/blue_primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/bpbd_orange</item>
-        <item name="colorSecondaryVariant">@color/bpbd_orange</item>
-        <item name="colorOnSecondary">@color/bpbd_black</item>
+        <item name="colorSecondary">@color/blue_secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Blue Theme (Default) -->
+    <style name="Theme.BPBDApp.Blue" parent="Theme.BPBDApp" />
+
+    <!-- Orange Theme -->
+    <style name="Theme.BPBDApp.Orange" parent="Theme.BPBDApp">
+        <item name="colorPrimary">@color/orange_primary</item>
+        <item name="colorPrimaryVariant">@color/orange_primary_dark</item>
+        <item name="colorSecondary">@color/orange_secondary</item>
+    </style>
+
+    <!-- Gray Theme -->
+    <style name="Theme.BPBDApp.Gray" parent="Theme.BPBDApp">
+        <item name="colorPrimary">@color/gray_primary</item>
+        <item name="colorPrimaryVariant">@color/gray_primary_dark</item>
+        <item name="colorSecondary">@color/gray_secondary</item>
     </style>
 </resources>

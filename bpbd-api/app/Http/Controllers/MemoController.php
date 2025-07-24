@@ -14,17 +14,22 @@ class MemoController extends BaseController
     public function __construct()
     {
         $this->model = new Memo();
+        $this->with = ['recipients'];
     }
+
+use Illuminate\Support\Facades\DB;
 
     public function store(StoreMemoRequest $request)
     {
-        $memo = Memo::create($request->validated());
+        return DB::transaction(function () use ($request) {
+            $memo = Memo::create($request->validated());
 
-        if ($request->recipient_type === 'individu' && $request->has('recipient_ids')) {
-            $memo->recipients()->attach($request->recipient_ids);
-        }
+            if ($request->recipient_type === 'individu' && $request->has('recipient_ids')) {
+                $memo->recipients()->attach($request->recipient_ids);
+            }
 
-        return $memo;
+            return $memo;
+        });
     }
 
     public function show(Memo $memo)

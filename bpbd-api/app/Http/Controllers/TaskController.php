@@ -14,15 +14,19 @@ class TaskController extends Controller
         return Task::with('members')->get();
     }
 
+use Illuminate\Support\Facades\DB;
+
     public function store(StoreTaskRequest $request)
     {
-        $task = Task::create($request->validated());
+        return DB::transaction(function () use ($request) {
+            $task = Task::create($request->validated());
 
-        if ($request->has('member_ids')) {
-            $task->members()->attach($request->member_ids);
-        }
+            if ($request->has('member_ids')) {
+                $task->members()->attach($request->member_ids);
+            }
 
-        return $task;
+            return $task;
+        });
     }
 
     public function show(Task $task)
@@ -32,13 +36,15 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $task->update($request->validated());
+        return DB::transaction(function () use ($request, $task) {
+            $task->update($request->validated());
 
-        if ($request->has('member_ids')) {
-            $task->members()->sync($request->member_ids);
-        }
+            if ($request->has('member_ids')) {
+                $task->members()->sync($request->member_ids);
+            }
 
-        return $task;
+            return $task;
+        });
     }
 
     public function destroy(Task $task)

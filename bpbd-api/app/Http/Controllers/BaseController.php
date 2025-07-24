@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 class BaseController extends Controller
 {
     protected $model;
+    protected $with = [];
 
     public function index()
     {
-        return $this->model::all();
+        return $this->model::with($this->with)->get();
     }
 
     public function store(Request $request)

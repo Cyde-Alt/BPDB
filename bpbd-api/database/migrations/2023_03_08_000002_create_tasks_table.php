@@ -18,9 +18,9 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->string('location');
             $table->string('disaster_type');
-            $table->enum('status', ['diajukan', 'disetujui', 'ditolak', 'dilaksanakan', 'dilaporkan', 'selesai', 'diarsipkan'])->default('diajukan');
-            $table->foreignId('created_by')->constrained('members');
-            $table->foreignId('approved_by')->nullable()->constrained('members');
+            $table->enum('status', ['diajukan', 'disetujui', 'ditolak', 'dilaksanakan', 'dilaporkan', 'selesai', 'diarsipkan'])->default('diajukan')->index();
+            $table->foreignId('created_by')->constrained('members')->index();
+            $table->foreignId('approved_by')->nullable()->constrained('members')->index();
             $table->text('report')->nullable();
             $table->string('attachment_url')->nullable();
             $table->timestamps();

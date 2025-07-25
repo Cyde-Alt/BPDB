@@ -4,7 +4,7 @@ data class Task(
     val id: String,
     val title: String,
     val location: String,
-    val disasterType: String,
-    val assignedMemberIds: List<String>,
-    val status: String // "diterima", "dikerjakan", "selesai"
+    val disaster_type: String,
+    val status: String,
+    val members: List<Member> = emptyList()
 )

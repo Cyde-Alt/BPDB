@@ -26,10 +26,11 @@ class TaskAdapter(private val tasks: List<Task>) :
             binding.taskTitle.text = task.title
             binding.taskLocation.text = task.location
             binding.taskStatus.text = task.status
+            binding.disasterType.text = task.disaster_type
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, TaskDetailActivity::class.java)
-                // TODO: Pass task ID to the activity
+                intent.putExtra("TASK_ID", task.id)
                 itemView.context.startActivity(intent)
             }
         }

@@ -154,3 +154,26 @@ API Anda sekarang berjalan dan siap menerima permintaan dari aplikasi Android.
 *   **Error terkait Ekstensi PHP (mis. `ext-mbstring not found`)**:
     *   **Penyebab**: Ekstensi PHP yang diperlukan oleh Laravel tidak diaktifkan.
     *   **Solusi**: Buka file `php.ini` Anda (di XAMPP, ini dapat ditemukan melalui panel kontrol XAMPP), cari baris untuk ekstensi yang hilang (misalnya, `extension=mbstring`), dan hapus tanda titik koma (`;`) di awal baris untuk mengaktifkannya. Simpan file dan restart server Apache Anda.
+
+## Instalasi (Produksi)
+
+Langkah-langkah ini untuk mendeploy API ke server produksi.
+
+1.  **Kloning Repositori**: Kloning repositori ke direktori server Anda (misalnya, `/var/www/bpbd-api`).
+2.  **Instal Dependensi**:
+    ```bash
+    composer install --optimize-autoloader --no-dev
+    ```
+3.  **Konfigurasi Lingkungan**:
+    *   Salin file `.env.example` menjadi `.env`.
+    *   Isi semua variabel lingkungan yang diperlukan untuk produksi, termasuk kredensial database dan kunci API. Pastikan `APP_ENV` diatur ke `production` dan `APP_DEBUG` ke `false`.
+    *   Buat kunci aplikasi: `php artisan key:generate`
+4.  **Optimalkan untuk Produksi**:
+    *   Jalankan perintah berikut untuk membuat cache dari file konfigurasi dan rute Anda. Ini secara signifikan meningkatkan kinerja dengan mengurangi jumlah file yang perlu dimuat Laravel pada setiap permintaan.
+    ```bash
+    php artisan config:cache
+    php artisan route:cache
+    ```
+5.  **Database**: Jalankan migrasi: `php artisan migrate --force` (gunakan `--force` untuk produksi karena ini adalah operasi yang berpotensi merusak).
+6.  **Konfigurasi Web Server**: Konfigurasikan Nginx atau Apache untuk menunjuk ke direktori `public` dari proyek Laravel Anda. Pastikan untuk mengatur izin file dan folder yang benar.
+7.  **Atur Supervisor**: Jika Anda menggunakan antrian (queues) untuk tugas latar belakang seperti mengirim notifikasi, konfigurasikan Supervisor untuk menjalankan `php artisan queue:work` secara terus-menerus.

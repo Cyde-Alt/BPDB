@@ -24,10 +24,12 @@ class UpdateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'location' => 'required',
-            'disaster_type' => 'required',
-            'status' => 'required|in:diajukan,disetujui,ditolak,dilaksanakan,dilaporkan,selesai,diarsipkan',
+            'title' => 'sometimes|required|string|max:255',
+            'location' => 'sometimes|required|string|max:255',
+            'disaster_type' => 'sometimes|required|string|max:255',
+            'status' => 'sometimes|required|in:diajukan,disetujui,ditolak,dilaksanakan,dilaporkan,selesai,diarsipkan',
+            'member_ids' => 'sometimes|array',
+            'member_ids.*' => 'exists:members,id',
         ];
     }
 }

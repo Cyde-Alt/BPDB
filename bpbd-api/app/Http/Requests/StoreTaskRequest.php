@@ -24,10 +24,12 @@ class StoreTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'location' => 'required',
-            'disaster_type' => 'required',
-            'status' => 'required|in:diajukan,disetujui,ditolak,dilaksanakan,dilaporkan,selesai,diarsipkan',
+            'title' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'disaster_type' => 'required|string|max:255',
+            'created_by' => 'required|exists:members,id',
+            'member_ids' => 'sometimes|array',
+            'member_ids.*' => 'exists:members,id',
         ];
     }
 }

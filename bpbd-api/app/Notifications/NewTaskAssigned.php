@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Laravel\Firebase\Facades\Firebase;
 
-class NewTaskAssigned extends Notification
+class NewTaskAssigned extends Notification implements ShouldQueue
 {
     use Queueable;
 

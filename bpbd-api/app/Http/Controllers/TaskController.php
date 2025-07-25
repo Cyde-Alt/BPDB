@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
-use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -14,17 +15,13 @@ class TaskController extends Controller
         return Task::with('members')->get();
     }
 
-use Illuminate\Support\Facades\DB;
-
     public function store(StoreTaskRequest $request)
     {
         return DB::transaction(function () use ($request) {
             $task = Task::create($request->validated());
-
             if ($request->has('member_ids')) {
-                $task->members()->attach($request->member_ids);
+                $task->members()->attach($request->validated()['member_ids']);
             }
-
             return $task;
         });
     }
@@ -38,11 +35,9 @@ use Illuminate\Support\Facades\DB;
     {
         return DB::transaction(function () use ($request, $task) {
             $task->update($request->validated());
-
             if ($request->has('member_ids')) {
-                $task->members()->sync($request->member_ids);
+                $task->members()->sync($request->validated()['member_ids']);
             }
-
             return $task;
         });
     }

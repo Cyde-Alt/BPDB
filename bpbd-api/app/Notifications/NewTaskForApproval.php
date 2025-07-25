@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use Kreait\Firebase\Messaging\CloudMessage;
 
-class NewTaskForApproval extends Notification
+class NewTaskForApproval extends Notification implements ShouldQueue
 {
     use Queueable;
 

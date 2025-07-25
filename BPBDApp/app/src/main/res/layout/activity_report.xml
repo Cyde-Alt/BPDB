@@ -6,47 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ReportActivity">
 
-    <EditText
-        android:id="@+id/reporter_name"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/report_title_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        android:hint="Nama Pelapor"
-        android:inputType="text"
+        android:hint="Judul Laporan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/reporter_phone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Nomor Telepon"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reporter_name" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/report_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/description"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/description_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:gravity="top"
         android:hint="Deskripsi Laporan"
-        android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/submit_report"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reporter_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/report_title_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/report_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/submit_report"

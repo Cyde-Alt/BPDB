@@ -17,8 +17,12 @@ class TaskDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ThemeManager.applyTheme(this)
         binding = ActivityTaskDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewModel = ViewModelProvider(this).get(TaskDetailViewModel::class.java)
 
@@ -30,22 +34,18 @@ class TaskDetailActivity : AppCompatActivity() {
 
         observeViewModel()
         viewModel.getTaskDetails(taskId)
-
-        val sharedPref = getSharedPreferences("BPBDApp", Context.MODE_PRIVATE)
-        val userRole = sharedPref.getString("user_role", "operator")
-
-        binding.reportButton.setOnClickListener {
-            val intent = Intent(this, TaskReportActivity::class.java)
-            intent.putExtra("TASK_ID", taskId)
-            startActivity(intent)
-        }
     }
 
     private fun observeViewModel() {
         viewModel.task.observe(this) { task ->
+            binding.toolbarLayout.title = task.title
             binding.taskTitle.text = task.title
             binding.taskDescription.text = task.description
-            // TODO: Display other task details
+            binding.taskLocation.text = task.location
+            binding.disasterType.text = task.disaster_type
+
+            // Setup FAB based on user role and task status
+            // TODO: Implement proper role-based logic
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
@@ -55,5 +55,10 @@ class TaskDetailActivity : AppCompatActivity() {
         viewModel.errorMessage.observe(this) { errorMessage ->
             Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
